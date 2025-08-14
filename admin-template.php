@@ -17,6 +17,7 @@ $exclude_html_tags = function_exists('get_option') ? get_option('wenpai_trademar
             <?php printf( esc_html__( 'Version: %s', 'wenpai-trademark' ), esc_html( WENPAI_TRADEMARK_VERSION ) ); ?>
         </span>
         <a href="https://sharecms.com/document" target="_blank" class="button button-secondary" style="margin-left: 10px;">
+            <?php esc_html_e( 'Documentation', 'wenpai-trademark' ); ?>
         </a>
         <a href="https://meta.cyberforums.com/c/wenpai-org/" target="_blank" class="button button-secondary">
             <?php esc_html_e( 'Support', 'wenpai-trademark' ); ?>
