@@ -208,7 +208,13 @@ class WenpaiTrademark {
         $sanitized = [];
         
         foreach ($valid_scopes as $scope) {
-            $sanitized[$scope] = !empty($scopes[$scope]);
+            // 正确处理JavaScript发送的布尔值（可能是字符串'true'/'false'或布尔值true/false）
+            $value = $scopes[$scope] ?? false;
+            if (is_string($value)) {
+                $sanitized[$scope] = $value === 'true' || $value === '1';
+            } else {
+                $sanitized[$scope] = (bool) $value;
+            }
         }
         
         return $sanitized;
@@ -222,7 +228,13 @@ class WenpaiTrademark {
     }
     
     public function get_scopes() {
-        return function_exists('get_option') ? get_option('wenpai_trademark_scopes', ['content' => true]) : ['content' => true];
+        $default_scopes = [
+            'content' => true,
+            'title' => true,
+            'widgets' => true,
+            'comments' => true,
+        ];
+        return function_exists('get_option') ? get_option('wenpai_trademark_scopes', $default_scopes) : $default_scopes;
     }
     
     // ========== TEXT REPLACEMENT ENGINE ==========
@@ -239,10 +251,25 @@ class WenpaiTrademark {
             }
             if (!empty($scopes['widgets'])) {
                 add_filter('widget_text', [$this, 'replace_terms'], 20);
+                add_filter('widget_title', [$this, 'replace_terms'], 20);
+                add_filter('widget_content', [$this, 'replace_terms'], 20);
             }
             if (!empty($scopes['comments'])) {
                 add_filter('comment_text', [$this, 'replace_terms'], 20);
+                add_filter('get_comment_text', [$this, 'replace_terms'], 20);
             }
+        }
+    }
+    
+    public function remove_filters() {
+        if (function_exists('remove_filter')) {
+            remove_filter('the_content', [$this, 'replace_terms'], 20);
+            remove_filter('the_title', [$this, 'replace_terms'], 20);
+            remove_filter('widget_text', [$this, 'replace_terms'], 20);
+            remove_filter('widget_title', [$this, 'replace_terms'], 20);
+            remove_filter('widget_content', [$this, 'replace_terms'], 20);
+            remove_filter('comment_text', [$this, 'replace_terms'], 20);
+            remove_filter('get_comment_text', [$this, 'replace_terms'], 20);
         }
     }
     
@@ -483,6 +510,9 @@ class WenpaiTrademark {
                 if (function_exists('update_option')) {
                     update_option('wenpai_trademark_scopes', $scopes);
                 }
+                // 重新应用过滤器以使新设置生效
+                $this->remove_filters();
+                $this->apply_filters();
             }
             
             if (isset($_POST['exclude_post_ids'])) {
@@ -532,7 +562,32 @@ class WenpaiTrademark {
             }
         }
         
+        // 验证文件类型
+        $allowed_types = ['text/csv', 'application/csv', 'text/plain'];
+        $file_type = $file['type'];
+        $file_extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        
+        if (!in_array($file_type, $allowed_types) && $file_extension !== 'csv') {
+            if (function_exists('wp_send_json_error')) {
+                wp_send_json_error(['message' => __('Invalid file type. Please upload a CSV file.', 'wenpai-trademark')]);
+            }
+        }
+        
+        // 验证文件大小 (最大1MB)
+        if ($file['size'] > 1048576) {
+            if (function_exists('wp_send_json_error')) {
+                wp_send_json_error(['message' => __('File too large. Maximum size is 1MB.', 'wenpai-trademark')]);
+            }
+        }
+        
         $csv_data = file_get_contents($file['tmp_name']);
+        
+        // 验证CSV内容
+        if (empty($csv_data)) {
+            if (function_exists('wp_send_json_error')) {
+                wp_send_json_error(['message' => __('Empty file or unable to read file.', 'wenpai-trademark')]);
+            }
+        }
         $lines = str_getcsv($csv_data, "\n");
         
         $imported_terms = [];
@@ -664,9 +719,7 @@ class WenpaiTrademark {
         
         $terms = $this->get_terms();
         
-        // Debug: Log the terms and search key
-        error_log('Edit Term Debug - Old term: "' . $old_term . '" (length: ' . strlen($old_term) . ')');
-        error_log('Edit Term Debug - Available terms: ' . print_r(array_keys($terms), true));
+        // 验证原术语是否存在
         
         if (!isset($terms[$old_term])) {
             if (function_exists('wp_send_json_error')) {
@@ -706,7 +759,7 @@ class WenpaiTrademark {
         if (function_exists('update_option')) {
             update_option('wenpai_trademark_terms', $terms);
         }
-        $this->cached_terms = null;
+        self::$cached_terms = null;
         
         if (function_exists('wp_send_json_success')) {
             wp_send_json_success([

@@ -138,10 +138,12 @@ $exclude_html_tags = function_exists('get_option') ? get_option('wenpai_trademar
                         <tr>
                             <th><?php _e('Apply To', 'wenpai-trademark'); ?></th>
                             <td>
-                                <label><input type="checkbox" name="scopes[content]" value="1" <?php echo function_exists('checked') ? checked(!empty($scopes['content']), true, false) : (!empty($scopes['content']) ? 'checked' : ''); ?> /> <?php _e('Post Content', 'wenpai-trademark'); ?></label>                                
-                                <label><input type="checkbox" name="scopes[title]" value="1" <?php echo function_exists('checked') ? checked(!empty($scopes['title']), true, false) : (!empty($scopes['title']) ? 'checked' : ''); ?> /> <?php _e('Post Titles', 'wenpai-trademark'); ?></label>                                
-                                <label><input type="checkbox" name="scopes[widgets]" value="1" <?php echo function_exists('checked') ? checked(!empty($scopes['widgets']), true, false) : (!empty($scopes['widgets']) ? 'checked' : ''); ?> /> <?php _e('Widgets', 'wenpai-trademark'); ?></label>                                
-                                <label><input type="checkbox" name="scopes[comments]" value="1" <?php echo function_exists('checked') ? checked(!empty($scopes['comments']), true, false) : (!empty($scopes['comments']) ? 'checked' : ''); ?> /> <?php _e('Comments', 'wenpai-trademark'); ?></label>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <label><input type="checkbox" name="scopes[content]" value="1" <?php echo function_exists('checked') ? checked(!empty($scopes['content']), true, false) : (!empty($scopes['content']) ? 'checked' : ''); ?> /> <?php _e('Post Content', 'wenpai-trademark'); ?></label>
+                                    <label><input type="checkbox" name="scopes[title]" value="1" <?php echo function_exists('checked') ? checked(!empty($scopes['title']), true, false) : (!empty($scopes['title']) ? 'checked' : ''); ?> /> <?php _e('Post Titles', 'wenpai-trademark'); ?></label>
+                                    <label><input type="checkbox" name="scopes[widgets]" value="1" <?php echo function_exists('checked') ? checked(!empty($scopes['widgets']), true, false) : (!empty($scopes['widgets']) ? 'checked' : ''); ?> /> <?php _e('Widgets', 'wenpai-trademark'); ?></label>
+                                    <label><input type="checkbox" name="scopes[comments]" value="1" <?php echo function_exists('checked') ? checked(!empty($scopes['comments']), true, false) : (!empty($scopes['comments']) ? 'checked' : ''); ?> /> <?php _e('Comments', 'wenpai-trademark'); ?></label>
+                                </div>
                             </td>
                         </tr>
                     </table>
@@ -278,18 +280,49 @@ $exclude_html_tags = function_exists('get_option') ? get_option('wenpai_trademar
 jQuery(document).ready(function($) {
     var wenpaiAdmin = window.wenpaiAdmin || {};
     
+    // 获取当前活跃标签（从URL hash或localStorage）
+    function getCurrentTab() {
+        var hash = window.location.hash.replace('#', '');
+        if (hash && $('.wenpai-tab[data-tab="' + hash + '"]').length) {
+            return hash;
+        }
+        var saved = localStorage.getItem('wenpai_active_tab');
+        if (saved && $('.wenpai-tab[data-tab="' + saved + '"]').length) {
+            return saved;
+        }
+        return 'terms'; // 默认标签
+    }
+    
+    // 设置活跃标签
+    function setActiveTab(tabName) {
+        // 移除所有活跃状态
+        $('.wenpai-tab').removeClass('active');
+        $('.wenpai-section').hide();
+        
+        // 设置新的活跃状态
+        $('.wenpai-tab[data-tab="' + tabName + '"]').addClass('active');
+        $('.wenpai-section[data-section="' + tabName + '"]').show();
+        
+        // 保存到localStorage和URL hash
+        localStorage.setItem('wenpai_active_tab', tabName);
+        window.location.hash = tabName;
+    }
+    
+    // 页面加载时恢复活跃标签
+    var currentTab = getCurrentTab();
+    setActiveTab(currentTab);
+    
     // Tab switching functionality
     $('.wenpai-tab').click(function(e) {
         e.preventDefault();
         var target = $(this).data('tab');
-        
-        // Remove active class from all tabs and hide all sections
-        $('.wenpai-tab').removeClass('active');
-        $('.wenpai-section').hide();
-        
-        // Add active class to clicked tab and show corresponding section
-        $(this).addClass('active');
-        $('.wenpai-section[data-section="' + target + '"]').show();
+        setActiveTab(target);
+    });
+    
+    // 监听浏览器前进后退按钮
+    $(window).on('hashchange', function() {
+        var newTab = getCurrentTab();
+        setActiveTab(newTab);
     });
     
     function showNotice(message, type) {
@@ -301,23 +334,25 @@ jQuery(document).ready(function($) {
         }, 5000);
     }
     
+    // Define text variables globally
+    var yesText = wenpaiAdmin.strings && wenpaiAdmin.strings.yes ? wenpaiAdmin.strings.yes : '<?php _e('Yes', 'wenpai-trademark'); ?>';
+    var noText = wenpaiAdmin.strings && wenpaiAdmin.strings.no ? wenpaiAdmin.strings.no : '<?php _e('No', 'wenpai-trademark'); ?>';
+    var editText = wenpaiAdmin.strings && wenpaiAdmin.strings.edit ? wenpaiAdmin.strings.edit : '<?php _e('Edit', 'wenpai-trademark'); ?>';
+    var deleteText = wenpaiAdmin.strings && wenpaiAdmin.strings.delete ? wenpaiAdmin.strings.delete : '<?php _e('Delete', 'wenpai-trademark'); ?>';
+    var pleaseEnterCustomSymbol = '<?php _e('Please enter a custom symbol.', 'wenpai-trademark'); ?>';
+    var pleaseEnterTerm = '<?php _e('Please enter a term.', 'wenpai-trademark'); ?>';
+    var addTermText = '<?php _e('Add Term', 'wenpai-trademark'); ?>';
+    var updateTermText = '<?php _e('Update Term', 'wenpai-trademark'); ?>';
+    var termAddedText = '<?php _e('Term added successfully!', 'wenpai-trademark'); ?>';
+    var termUpdatedText = '<?php _e('Term updated successfully!', 'wenpai-trademark'); ?>';
+    var confirmDeleteText = '<?php _e('Are you sure you want to delete this term?', 'wenpai-trademark'); ?>';
+    var termDeletedText = '<?php _e('Term deleted successfully!', 'wenpai-trademark'); ?>';
+    var pleaseSelectFileText = '<?php _e('Please select a CSV file.', 'wenpai-trademark'); ?>';
+    var settingsSavedText = '<?php _e('Settings saved successfully!', 'wenpai-trademark'); ?>';
+    var importSuccessText = '<?php _e('Terms imported successfully!', 'wenpai-trademark'); ?>';
+    var exportSuccessText = '<?php _e('Terms exported successfully!', 'wenpai-trademark'); ?>';
+    
     function addTermToTable(term, config) {
-        var yesText = wenpaiAdmin.strings && wenpaiAdmin.strings.yes ? wenpaiAdmin.strings.yes : '<?php _e('Yes', 'wenpai-trademark'); ?>';
-        var noText = wenpaiAdmin.strings && wenpaiAdmin.strings.no ? wenpaiAdmin.strings.no : '<?php _e('No', 'wenpai-trademark'); ?>';
-        var editText = wenpaiAdmin.strings && wenpaiAdmin.strings.edit ? wenpaiAdmin.strings.edit : '<?php _e('Edit', 'wenpai-trademark'); ?>';
-        var deleteText = wenpaiAdmin.strings && wenpaiAdmin.strings.delete ? wenpaiAdmin.strings.delete : '<?php _e('Delete', 'wenpai-trademark'); ?>';
-        var pleaseEnterCustomSymbol = '<?php _e('Please enter a custom symbol.', 'wenpai-trademark'); ?>';
-        var pleaseEnterTerm = '<?php _e('Please enter a term.', 'wenpai-trademark'); ?>';
-        var addTermText = '<?php _e('Add Term', 'wenpai-trademark'); ?>';
-        var updateTermText = '<?php _e('Update Term', 'wenpai-trademark'); ?>';
-        var termAddedText = '<?php _e('Term added successfully!', 'wenpai-trademark'); ?>';
-        var termUpdatedText = '<?php _e('Term updated successfully!', 'wenpai-trademark'); ?>';
-        var confirmDeleteText = '<?php _e('Are you sure you want to delete this term?', 'wenpai-trademark'); ?>';
-        var termDeletedText = '<?php _e('Term deleted successfully!', 'wenpai-trademark'); ?>';
-        var pleaseSelectFileText = '<?php _e('Please select a CSV file.', 'wenpai-trademark'); ?>';
-        var settingsSavedText = '<?php _e('Settings saved successfully!', 'wenpai-trademark'); ?>';
-        var importSuccessText = '<?php _e('Terms imported successfully!', 'wenpai-trademark'); ?>';
-        var exportSuccessText = '<?php _e('Terms exported successfully!', 'wenpai-trademark'); ?>';
         
         var row = '<tr>' +
             '<td>' + $('<div>').text(term).html() + '</td>' +
@@ -388,17 +423,11 @@ jQuery(document).ready(function($) {
             
             $.post(wenpaiAdmin.ajaxUrl, editData, function(response) {
                  if (response.success) {
-                     // Reset form before reload
-                     $('#new-term').val('');
-                     $('#new-symbol').val('™');
-                     $('#custom-symbol').hide().val('');
-                     $('#new-density').val(1);
-                     $('#new-case-sensitive').prop('checked', false);
-                     $('#new-whole-word').prop('checked', true);
-                     $('#add-term').text(addTermText).removeData('editing');
-                     
-                     // Reload the page to refresh the table
-                     location.reload();
+                     showNotice(termUpdatedText, 'success');
+                     // 延迟1.5秒后刷新页面
+                     setTimeout(function() {
+                         location.reload();
+                     }, 1500);
                  } else {
                      showNotice(response.data.message || 'Failed to update term.', 'error');
                  }
@@ -571,6 +600,8 @@ jQuery(document).ready(function($) {
             var name = $(this).attr('name').match(/scopes\[(.+)\]/)[1];
             formData.scopes[name] = $(this).is(':checked');
         });
+        
+        console.log('Saving scopes:', formData.scopes); // 调试信息
         
         $.post(wenpaiAdmin.ajaxUrl, formData, function(response) {
             if (response.success) {
