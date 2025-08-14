@@ -4,11 +4,11 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$plugin = WenpaiTrademarkPlugin::get_instance();
+$plugin = WenpaiTrademark::get_instance();
 $terms = $plugin->get_terms();
 $scopes = $plugin->get_scopes();
-$exclude_post_ids = \get_option(WenpaiTrademarkPlugin::OPTION_EXCLUDED_POST_IDS, '');
-$exclude_html_tags = \get_option(WenpaiTrademarkPlugin::OPTION_EXCLUDED_TAGS, 'a,code,pre');
+$exclude_post_ids = function_exists('get_option') ? get_option('wenpai_trademark_excluded_post_ids', '') : '';
+$exclude_html_tags = function_exists('get_option') ? get_option('wenpai_trademark_excluded_tags', 'a,code,pre') : 'a,code,pre';
 ?>
 
 <div class="wrap">
@@ -17,7 +17,7 @@ $exclude_html_tags = \get_option(WenpaiTrademarkPlugin::OPTION_EXCLUDED_TAGS, 'a
     <div id="wenpai-admin-notices"></div>
     
     <form id="wenpai-settings-form" method="post" action="options.php">
-        <?php \settings_fields('wenpai_trademark_settings'); ?>
+        <?php if (function_exists('settings_fields')) settings_fields('wenpai_trademark_settings'); ?>
         
         <!-- Terms Management -->
         <div class="card">
@@ -37,15 +37,21 @@ $exclude_html_tags = \get_option(WenpaiTrademarkPlugin::OPTION_EXCLUDED_TAGS, 'a
                 <tbody>
                     <?php foreach ($terms as $term => $config): ?>
                     <tr>
-                        <td><?php echo \esc_html($term); ?></td>
-                        <td><?php echo \esc_html($config['symbol']); ?></td>
-                        <td><?php echo \esc_html($config['position']); ?></td>
-                        <td><?php echo \esc_html($config['density']); ?></td>
-                        <td><?php echo $config['case_sensitive'] ? 'Yes' : 'No'; ?></td>
-                        <td><?php echo $config['whole_word'] ? 'Yes' : 'No'; ?></td>
+                        <td><?php echo function_exists('esc_html') ? esc_html($term) : htmlspecialchars($term); ?></td>
+                        <td><?php echo function_exists('esc_html') ? esc_html($config['symbol']) : htmlspecialchars($config['symbol']); ?></td>
+                        <td><?php echo function_exists('esc_html') ? esc_html($config['position']) : htmlspecialchars($config['position']); ?></td>
+                        <td><?php echo function_exists('esc_html') ? esc_html($config['density']) : htmlspecialchars($config['density']); ?></td>
+                        <td><?php echo $config['case_sensitive'] ? (function_exists('__') ? __('Yes', 'wenpai-trademark') : 'Yes') : (function_exists('__') ? __('No', 'wenpai-trademark') : 'No'); ?></td>
+                        <td><?php echo $config['whole_word'] ? (function_exists('__') ? __('Yes', 'wenpai-trademark') : 'Yes') : (function_exists('__') ? __('No', 'wenpai-trademark') : 'No'); ?></td>
                         <td>
-                            <button type="button" class="button edit-term" data-term="<?php echo \esc_attr($term); ?>">Edit</button>
-                            <button type="button" class="button delete-term" data-term="<?php echo \esc_attr($term); ?>">Delete</button>
+                            <button type="button" class="button edit-term" 
+                                    data-term="<?php echo function_exists('esc_attr') ? esc_attr($term) : htmlspecialchars($term); ?>"
+                                    data-symbol="<?php echo function_exists('esc_attr') ? esc_attr($config['symbol']) : htmlspecialchars($config['symbol']); ?>"
+                                    data-position="<?php echo function_exists('esc_attr') ? esc_attr($config['position']) : htmlspecialchars($config['position']); ?>"
+                                    data-density="<?php echo function_exists('esc_attr') ? esc_attr($config['density']) : htmlspecialchars($config['density']); ?>"
+                                    data-case-sensitive="<?php echo $config['case_sensitive'] ? '1' : '0'; ?>"
+                                    data-whole-word="<?php echo $config['whole_word'] ? '1' : '0'; ?>"><?php if (function_exists('_e')) _e('Edit', 'wenpai-trademark'); else echo 'Edit'; ?></button>
+                            <button type="button" class="button delete-term" data-term="<?php echo function_exists('esc_attr') ? esc_attr($term) : htmlspecialchars($term); ?>"><?php if (function_exists('_e')) _e('Delete', 'wenpai-trademark'); else echo 'Delete'; ?></button>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -67,7 +73,9 @@ $exclude_html_tags = \get_option(WenpaiTrademarkPlugin::OPTION_EXCLUDED_TAGS, 'a
                             <option value="©">© (Copyright)</option>
                             <option value="℠">℠ (Service Mark)</option>
                             <option value="℗">℗ (Sound Recording)</option>
+                            <option value="custom">Custom Symbol</option>
                         </select>
+                        <input type="text" id="custom-symbol" placeholder="Enter custom symbol" style="display:none; margin-left: 10px; width: 100px;" />
                     </td>
                 </tr>
                 <tr>
@@ -102,10 +110,10 @@ $exclude_html_tags = \get_option(WenpaiTrademarkPlugin::OPTION_EXCLUDED_TAGS, 'a
                 <tr>
                     <th>Apply To</th>
                     <td>
-                        <label><input type="checkbox" name="scopes[content]" value="1" <?php \checked(!empty($scopes['content'])); ?> /> Post Content</label><br>
-                        <label><input type="checkbox" name="scopes[title]" value="1" <?php \checked(!empty($scopes['title'])); ?> /> Post Titles</label><br>
-                        <label><input type="checkbox" name="scopes[widgets]" value="1" <?php \checked(!empty($scopes['widgets'])); ?> /> Widgets</label><br>
-                        <label><input type="checkbox" name="scopes[comments]" value="1" <?php \checked(!empty($scopes['comments'])); ?> /> Comments</label>
+                        <label><input type="checkbox" name="scopes[content]" value="1" <?php echo function_exists('checked') ? checked(!empty($scopes['content']), true, false) : (!empty($scopes['content']) ? 'checked' : ''); ?> /> Post Content</label><br>
+                        <label><input type="checkbox" name="scopes[title]" value="1" <?php echo function_exists('checked') ? checked(!empty($scopes['title']), true, false) : (!empty($scopes['title']) ? 'checked' : ''); ?> /> Post Titles</label><br>
+                        <label><input type="checkbox" name="scopes[widgets]" value="1" <?php echo function_exists('checked') ? checked(!empty($scopes['widgets']), true, false) : (!empty($scopes['widgets']) ? 'checked' : ''); ?> /> Widgets</label><br>
+                        <label><input type="checkbox" name="scopes[comments]" value="1" <?php echo function_exists('checked') ? checked(!empty($scopes['comments']), true, false) : (!empty($scopes['comments']) ? 'checked' : ''); ?> /> Comments</label>
                     </td>
                 </tr>
             </table>
@@ -118,14 +126,14 @@ $exclude_html_tags = \get_option(WenpaiTrademarkPlugin::OPTION_EXCLUDED_TAGS, 'a
                 <tr>
                     <th><label for="exclude-post-ids">Exclude Post IDs</label></th>
                     <td>
-                        <input type="text" id="exclude-post-ids" name="exclude_post_ids" value="<?php echo \esc_attr($exclude_post_ids); ?>" class="regular-text" />
+                        <input type="text" id="exclude-post-ids" name="exclude_post_ids" value="<?php echo function_exists('esc_attr') ? esc_attr($exclude_post_ids) : htmlspecialchars($exclude_post_ids); ?>" class="regular-text" />
                         <p class="description">Comma-separated list of post IDs to exclude from replacement.</p>
                     </td>
                 </tr>
                 <tr>
                     <th><label for="exclude-html-tags">Exclude HTML Tags</label></th>
                     <td>
-                        <input type="text" id="exclude-html-tags" name="exclude_html_tags" value="<?php echo \esc_attr($exclude_html_tags); ?>" class="regular-text" />
+                        <input type="text" id="exclude-html-tags" name="exclude_html_tags" value="<?php echo function_exists('esc_attr') ? esc_attr($exclude_html_tags) : htmlspecialchars($exclude_html_tags); ?>" class="regular-text" />
                         <p class="description">Comma-separated list of HTML tags to exclude from replacement (e.g., a,code,pre).</p>
                     </td>
                 </tr>
@@ -153,7 +161,7 @@ $exclude_html_tags = \get_option(WenpaiTrademarkPlugin::OPTION_EXCLUDED_TAGS, 'a
             </table>
         </div>
         
-        <?php \submit_button('Save Settings'); ?>
+        <?php if (function_exists('submit_button')) { submit_button('Save Settings'); } else { echo '<input type="submit" id="submit" class="button button-primary" value="Save Settings" />'; } ?>
     </form>
 </div>
 
@@ -207,25 +215,52 @@ jQuery(document).ready(function($) {
     }
     
     function addTermToTable(term, config) {
+        var yesText = wenpaiAdmin.strings && wenpaiAdmin.strings.yes ? wenpaiAdmin.strings.yes : 'Yes';
+        var noText = wenpaiAdmin.strings && wenpaiAdmin.strings.no ? wenpaiAdmin.strings.no : 'No';
+        var editText = wenpaiAdmin.strings && wenpaiAdmin.strings.edit ? wenpaiAdmin.strings.edit : 'Edit';
+        var deleteText = wenpaiAdmin.strings && wenpaiAdmin.strings.delete ? wenpaiAdmin.strings.delete : 'Delete';
+        
         var row = '<tr>' +
             '<td>' + $('<div>').text(term).html() + '</td>' +
             '<td>' + $('<div>').text(config.symbol).html() + '</td>' +
             '<td>' + $('<div>').text(config.position).html() + '</td>' +
             '<td>' + $('<div>').text(config.density).html() + '</td>' +
-            '<td>' + (config.case_sensitive ? 'Yes' : 'No') + '</td>' +
-            '<td>' + (config.whole_word ? 'Yes' : 'No') + '</td>' +
+            '<td>' + (config.case_sensitive ? yesText : noText) + '</td>' +
+            '<td>' + (config.whole_word ? yesText : noText) + '</td>' +
             '<td>' +
-                '<button type="button" class="button edit-term" data-term="' + $('<div>').text(term).html() + '">Edit</button> ' +
-                '<button type="button" class="button delete-term" data-term="' + $('<div>').text(term).html() + '">Delete</button>' +
+                '<button type="button" class="button edit-term" ' +
+                    'data-term="' + $('<div>').text(term).html() + '" ' +
+                    'data-symbol="' + $('<div>').text(config.symbol).html() + '" ' +
+                    'data-position="' + $('<div>').text(config.position).html() + '" ' +
+                    'data-density="' + config.density + '" ' +
+                    'data-case-sensitive="' + (config.case_sensitive ? '1' : '0') + '" ' +
+                    'data-whole-word="' + (config.whole_word ? '1' : '0') + '">' + editText + '</button> ' +
+                '<button type="button" class="button delete-term" data-term="' + $('<div>').text(term).html() + '">' + deleteText + '</button>' +
             '</td>' +
         '</tr>';
         $('#terms-table tbody').append(row);
     }
     
+    // Handle custom symbol selection
+    $('#new-symbol').change(function() {
+        if ($(this).val() === 'custom') {
+            $('#custom-symbol').show().focus();
+        } else {
+            $('#custom-symbol').hide().val('');
+        }
+    });
+    
     // Add new term
     $('#add-term').click(function() {
         var term = $('#new-term').val().trim();
         var symbol = $('#new-symbol').val();
+        if (symbol === 'custom') {
+            symbol = $('#custom-symbol').val().trim();
+            if (!symbol) {
+                showNotice(wenpaiAdmin.strings.pleaseEnterCustomSymbol, 'error');
+                return;
+            }
+        }
         var position = $('#new-position').val();
         var density = parseInt($('#new-density').val());
         var caseSensitive = $('#new-case-sensitive').is(':checked');
@@ -236,31 +271,114 @@ jQuery(document).ready(function($) {
             return;
         }
         
-        var termData = {
-            action: 'wenpai_save_settings',
-            nonce: wenpaiAdmin.nonce,
-            terms: {}
-        };
-        termData.terms[term] = {
-            symbol: symbol,
-            position: position,
-            density: density,
-            case_sensitive: caseSensitive,
-            whole_word: wholeWord
-        };
+        var isEditing = $('#add-term').data('editing');
         
-        $.post(wenpaiAdmin.ajaxUrl, termData, function(response) {
-            if (response.success) {
-                addTermToTable(term, termData.terms[term]);
-                $('#new-term').val('');
-                $('#new-density').val(1);
-                $('#new-case-sensitive').prop('checked', false);
-                $('#new-whole-word').prop('checked', true);
-                showNotice('Term added successfully!', 'success');
-            } else {
-                showNotice(response.data.message || 'Failed to add term.', 'error');
-            }
-        });
+        if (isEditing) {
+            // Use dedicated edit endpoint
+            var editData = {
+                action: 'wenpai_edit_term',
+                nonce: wenpaiAdmin.nonce,
+                old_term: isEditing,
+                new_term: term,
+                symbol: symbol,
+                position: position,
+                density: density,
+                case_sensitive: caseSensitive,
+                whole_word: wholeWord
+            };
+            
+            $.post(wenpaiAdmin.ajaxUrl, editData, function(response) {
+                 if (response.success) {
+                     // Reset form before reload
+                     $('#new-term').val('');
+                     $('#new-symbol').val('™');
+                     $('#custom-symbol').hide().val('');
+                     $('#new-density').val(1);
+                     $('#new-case-sensitive').prop('checked', false);
+                     $('#new-whole-word').prop('checked', true);
+                     $('#add-term').text(wenpaiAdmin.strings.addTerm).removeData('editing');
+                     
+                     // Reload the page to refresh the table
+                     location.reload();
+                 } else {
+                     showNotice(response.data.message || 'Failed to update term.', 'error');
+                 }
+             });
+        } else {
+            // Add new term
+            var termData = {
+                action: 'wenpai_save_settings',
+                nonce: wenpaiAdmin.nonce,
+                terms: {}
+            };
+            termData.terms[term] = {
+                symbol: symbol,
+                position: position,
+                density: density,
+                case_sensitive: caseSensitive,
+                whole_word: wholeWord
+            };
+            
+            $.post(wenpaiAdmin.ajaxUrl, termData, function(response) {
+                if (response.success) {
+                    addTermToTable(term, termData.terms[term]);
+                    $('#new-term').val('');
+                     $('#new-symbol').val('™');
+                     $('#custom-symbol').hide().val('');
+                     $('#new-density').val(1);
+                     $('#new-case-sensitive').prop('checked', false);
+                     $('#new-whole-word').prop('checked', true);
+                     $('#add-term').text(wenpaiAdmin.strings.addTerm).removeData('editing');
+                     showNotice(wenpaiAdmin.strings.termAdded, 'success');
+                } else {
+                    showNotice(response.data.message || 'Failed to add term.', 'error');
+                }
+            });
+        }
+    });
+    
+    // Edit term
+    $(document).on('click', '.edit-term', function() {
+        var $button = $(this);
+        var term = $button.data('term');
+        var currentSymbol = $button.data('symbol');
+        var currentPosition = $button.data('position');
+        var currentDensity = $button.data('density');
+        var currentCaseSensitive = $button.data('case-sensitive') === 1;
+        var currentWholeWord = $button.data('whole-word') === 1;
+        
+        // Fill edit form
+        $('#new-term').val(term);
+        
+        // Handle symbol selection
+        var predefinedSymbols = ['™', '®', '©', '℠', '℗'];
+        if (predefinedSymbols.includes(currentSymbol)) {
+            $('#new-symbol').val(currentSymbol);
+            $('#custom-symbol').hide().val('');
+        } else {
+            $('#new-symbol').val('custom');
+            $('#custom-symbol').show().val(currentSymbol);
+        }
+        
+        $('#new-position').val(currentPosition);
+        $('#new-density').val(currentDensity);
+        $('#new-case-sensitive').prop('checked', currentCaseSensitive);
+        $('#new-whole-word').prop('checked', currentWholeWord);
+        
+        // Change button text and add data attribute
+        $('#add-term').text(wenpaiAdmin.strings.updateTerm).data('editing', term);
+        
+        // Scroll to form
+        $('html, body').animate({
+            scrollTop: $('#new-term').offset().top - 100
+        }, 500);
+    });
+    
+    // Reset form when term input changes during edit
+    $('#new-term').on('input', function() {
+        if ($('#add-term').data('editing')) {
+            $('#add-term').text(wenpaiAdmin.strings.addTerm).removeData('editing');
+        }
     });
     
     // Delete term
@@ -281,7 +399,7 @@ jQuery(document).ready(function($) {
                 row.fadeOut(function() {
                     row.remove();
                 });
-                showNotice('Term deleted successfully!', 'success');
+                showNotice(wenpaiAdmin.strings.termDeleted, 'success');
             } else {
                 showNotice(response.data.message || 'Failed to delete term.', 'error');
             }
@@ -292,7 +410,7 @@ jQuery(document).ready(function($) {
     $('#import-terms').click(function() {
         var fileInput = $('#csv-file')[0];
         if (!fileInput.files.length) {
-            showNotice('Please select a CSV file.', 'error');
+            showNotice(wenpaiAdmin.strings.pleaseSelectFile, 'error');
             return;
         }
         
@@ -346,7 +464,8 @@ jQuery(document).ready(function($) {
             nonce: wenpaiAdmin.nonce,
             scopes: {},
             exclude_post_ids: $('#exclude-post-ids').val(),
-            exclude_html_tags: $('#exclude-html-tags').val()
+            exclude_html_tags: $('#exclude-html-tags').val(),
+            replace_all: true  // This is a full settings save, replace all
         };
         
         $('input[name^="scopes["]').each(function() {
