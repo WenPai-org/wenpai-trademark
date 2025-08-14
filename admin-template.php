@@ -12,7 +12,16 @@ $exclude_html_tags = function_exists('get_option') ? get_option('wenpai_trademar
 ?>
 
 <div class="wrap">
-    <h1><?php _e('WenPai Trademark Symbol Settings', 'wenpai-trademark'); ?></h1>
+        <h1><?php echo esc_html( get_admin_page_title() ); ?>
+        <span style="font-size: 13px; padding-left: 10px;">
+            <?php printf( esc_html__( 'Version: %s', 'wenpai-trademark' ), esc_html( WENPAI_TRADEMARK_VERSION ) ); ?>
+        </span>
+        <a href="https://sharecms.com/document" target="_blank" class="button button-secondary" style="margin-left: 10px;">
+        </a>
+        <a href="https://meta.cyberforums.com/c/wenpai-org/" target="_blank" class="button button-secondary">
+            <?php esc_html_e( 'Support', 'wenpai-trademark' ); ?>
+        </a>
+    </h1>
     
     <div id="wenpai-admin-notices"></div>
  <div class="wenpai-card">   
@@ -184,6 +193,12 @@ $exclude_html_tags = function_exists('get_option') ? get_option('wenpai_trademar
                             <th><label for="csv-file"><?php _e('Import Terms', 'wenpai-trademark'); ?></label></th>
                             <td>
                                 <input type="file" id="csv-file" accept=".csv" />
+                                <br><br>
+                                <label>
+                                    <input type="checkbox" id="skip-header" checked="checked" />
+                                    <?php _e('Skip first row (header)', 'wenpai-trademark'); ?>
+                                </label>
+                                <br><br>
                                 <button type="button" id="import-terms" class="button"><?php _e('Import CSV', 'wenpai-trademark'); ?></button>
                                 <p class="description"><?php _e('Import trademark terms from a CSV file. The CSV should contain columns: term, symbol, position, density, case_sensitive, whole_word.', 'wenpai-trademark'); ?></p>
                             </td>
@@ -546,6 +561,7 @@ jQuery(document).ready(function($) {
         formData.append('action', 'wenpai_import_terms');
         formData.append('nonce', wenpaiAdmin.nonce);
         formData.append('csv_file', fileInput.files[0]);
+        formData.append('skip_header', $('#skip-header').is(':checked') ? '1' : '0');
         
         $.ajax({
             url: wenpaiAdmin.ajaxUrl,

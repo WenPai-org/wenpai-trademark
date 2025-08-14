@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WenPai Trademark Plugin\n"
-"POT-Creation-Date: 2025-08-14 14:33+0800\n"
-"PO-Revision-Date: 2025-08-14 14:39+0800\n"
+"Project-Id-Version: WenPai Trademark Symbols\n"
+"POT-Creation-Date: 2025-08-14 15:42+0800\n"
+"PO-Revision-Date: 2025-08-14 15:44+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -19,226 +19,236 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: admin-template.php:15 wenpai-trademark.php:370
-msgid "WenPai Trademark Symbol Settings"
-msgstr "文派商标符号设置"
+#: admin-template.php:17
+#, php-format
+msgid "Version: %s"
+msgstr "版本：%s"
+
+#: admin-template.php:20
+msgid "Documentation"
+msgstr "文档"
+
+#: admin-template.php:23
+msgid "Support"
+msgstr "支持"
 
 # Admin page navigation
-#: admin-template.php:24
+#: admin-template.php:34
 msgid "Trademark Terms"
 msgstr "商标术语"
 
-#: admin-template.php:25
+#: admin-template.php:35
 msgid "Application Scope"
 msgstr "应用范围"
 
-#: admin-template.php:26 admin-template.php:153
+#: admin-template.php:36 admin-template.php:165
 msgid "Exclusion Settings"
 msgstr "排除设置"
 
-#: admin-template.php:27 admin-template.php:177
+#: admin-template.php:37 admin-template.php:189
 msgid "Import/Export"
 msgstr "导入导出"
 
 # Trademark Terms section
-#: admin-template.php:33
+#: admin-template.php:43
 msgid "Trademark Terms Management"
 msgstr "商标术语管理"
 
-#: admin-template.php:34
+#: admin-template.php:44
 msgid ""
 "Manage the terms that will automatically receive trademark symbols. "
 "Configure each term with its specific symbol, position, and matching rules."
 msgstr ""
-"管理您的商标术语及其符号配置。每个术语可以有不同的符号类型、位置和匹配规则。"
+"管理您的商标术语及其符号配置。每个术语可以有不同的符号类型、位置和匹配规"
+"则。"
 
-#: admin-template.php:39 admin-template.php:75
+#: admin-template.php:49 admin-template.php:85
 msgid "Term"
 msgstr "术语"
 
-#: admin-template.php:40 admin-template.php:82
+#: admin-template.php:50 admin-template.php:92
 msgid "Symbol"
 msgstr "符号"
 
-#: admin-template.php:41 admin-template.php:97
+#: admin-template.php:51 admin-template.php:107
 msgid "Position"
 msgstr "位置"
 
-#: admin-template.php:42 admin-template.php:107
+#: admin-template.php:52 admin-template.php:117
 msgid "Density"
 msgstr "密度"
 
-#: admin-template.php:43 admin-template.php:114
+#: admin-template.php:53 admin-template.php:124
 msgid "Case Sensitive"
 msgstr "区分大小写"
 
-#: admin-template.php:44
+#: admin-template.php:54
 msgid "Whole Word"
 msgstr "全词匹配"
 
-#: admin-template.php:45
+#: admin-template.php:55
 msgid "Actions"
 msgstr "操作"
 
 # JavaScript messages
-#: admin-template.php:55 admin-template.php:56 admin-template.php:305
-#: wenpai-trademark.php:405
+#: admin-template.php:65 admin-template.php:66 admin-template.php:354
+#: wenpai-trademark.php:432
 msgid "Yes"
 msgstr "是"
 
-#: admin-template.php:55 admin-template.php:56 admin-template.php:306
-#: wenpai-trademark.php:406
+#: admin-template.php:65 admin-template.php:66 admin-template.php:355
+#: wenpai-trademark.php:433
 msgid "No"
 msgstr "否"
 
-#: admin-template.php:64 admin-template.php:307 wenpai-trademark.php:407
+#: admin-template.php:74 admin-template.php:356 wenpai-trademark.php:434
 msgid "Edit"
 msgstr "编辑"
 
-#: admin-template.php:65 admin-template.php:308 wenpai-trademark.php:408
+#: admin-template.php:75 admin-template.php:357 wenpai-trademark.php:435
 msgid "Delete"
 msgstr "删除"
 
-#: admin-template.php:72
+#: admin-template.php:82
 msgid "Add New Term"
 msgstr "添加新术语"
 
-#: admin-template.php:77
+#: admin-template.php:87
 msgid "Enter the term to be marked"
 msgstr "输入要标记商标符号的术语"
 
-#: admin-template.php:78
+#: admin-template.php:88
 msgid "The word or phrase that will receive the trademark symbol."
 msgstr "将获得商标符号的单词或短语。"
 
-#: admin-template.php:85
+#: admin-template.php:95
 msgid "™ (Trademark)"
 msgstr "商标 ™"
 
-#: admin-template.php:86
+#: admin-template.php:96
 msgid "® (Registered)"
 msgstr "注册商标 ®"
 
-#: admin-template.php:87
+#: admin-template.php:97
 msgid "© (Copyright)"
 msgstr "版权 ©"
 
-#: admin-template.php:88
+#: admin-template.php:98
 msgid "℠ (Service Mark)"
 msgstr "服务标记 ℠"
 
-#: admin-template.php:89
+#: admin-template.php:99
 msgid "℗ (Sound Recording)"
 msgstr "录音版权 ℗"
 
-#: admin-template.php:90
+#: admin-template.php:100
 msgid "Custom Symbol"
 msgstr "自定义符号"
 
-#: admin-template.php:92
+#: admin-template.php:102
 msgid "Enter custom symbol"
 msgstr "输入您的自定义符号"
 
-#: admin-template.php:93
+#: admin-template.php:103
 msgid "Choose the trademark symbol to be added to the term."
 msgstr "选择符号相对于术语的显示位置。"
 
-#: admin-template.php:100
+#: admin-template.php:110
 msgid "After term"
 msgstr "术语之后"
 
-#: admin-template.php:101
+#: admin-template.php:111
 msgid "Before term"
 msgstr "术语之前"
 
-#: admin-template.php:103
+#: admin-template.php:113
 msgid "Where to place the symbol relative to the term."
 msgstr "选择符号相对于术语的显示位置。"
 
-#: admin-template.php:110
+#: admin-template.php:120
 msgid "Maximum number of times to apply the symbol per page (1-10)."
 msgstr "每页应用符号的最大次数（1-10）。"
 
-#: admin-template.php:117
+#: admin-template.php:127
 msgid "Whether the term matching should be case sensitive."
 msgstr "术语匹配是否区分大小写。"
 
-#: admin-template.php:121
+#: admin-template.php:131
 msgid "Whole Word Only"
 msgstr "全词匹配"
 
-#: admin-template.php:124
+#: admin-template.php:134
 msgid "Only match complete words, not partial matches within other words."
 msgstr "仅匹配完整的单词，而不是其他单词中的部分匹配。"
 
-#: admin-template.php:128 admin-template.php:311 wenpai-trademark.php:414
+#: admin-template.php:138 admin-template.php:360 wenpai-trademark.php:441
 msgid "Add Term"
 msgstr "添加术语"
 
 # Application Scope section
-#: admin-template.php:134
+#: admin-template.php:144
 msgid "Application Scope Settings"
 msgstr "应用范围设置"
 
-#: admin-template.php:135
+#: admin-template.php:145
 msgid ""
 "Choose where the trademark symbols should be automatically applied on your "
 "website."
 msgstr "选择在您的网站上自动应用商标符号的位置。"
 
-#: admin-template.php:139
+#: admin-template.php:149
 msgid "Apply To"
 msgstr "应用到"
 
-#: admin-template.php:141
+#: admin-template.php:152
 msgid "Post Content"
 msgstr "文章内容"
 
-#: admin-template.php:142
+#: admin-template.php:153
 msgid "Post Titles"
 msgstr "文章标题"
 
-#: admin-template.php:143
+#: admin-template.php:154
 msgid "Widgets"
 msgstr "小工具"
 
-#: admin-template.php:144
+#: admin-template.php:155
 msgid "Comments"
 msgstr "评论"
 
 # Exclusion Settings section
-#: admin-template.php:154
+#: admin-template.php:166
 msgid ""
 "Configure which content should be excluded from automatic trademark symbol "
 "application."
 msgstr "配置哪些内容应排除在自动商标符号应用之外。"
 
-#: admin-template.php:158
+#: admin-template.php:170
 msgid "Exclude Post IDs"
 msgstr "排除文章ID"
 
-#: admin-template.php:160
+#: admin-template.php:172
 msgid "e.g., 123, 456, 789"
 msgstr "例如：123, 456, 789"
 
-#: admin-template.php:161
+#: admin-template.php:173
 msgid ""
 "Comma-separated list of post IDs to exclude from trademark symbol "
 "replacement. Useful for specific posts where you don't want automatic "
 "symbols."
 msgstr ""
-"以逗号分隔的文章ID列表，这些文章将被排除在商标符号替换之外。适用于您不希望自"
-"动添加符号的特定文章。"
+"以逗号分隔的文章ID列表，这些文章将被排除在商标符号替换之外。适用于您不希望"
+"自动添加符号的特定文章。"
 
-#: admin-template.php:165
+#: admin-template.php:177
 msgid "Exclude HTML Tags"
 msgstr "排除HTML标签"
 
-#: admin-template.php:167
+#: admin-template.php:179
 msgid "e.g., a, code, pre"
 msgstr "例如：a, code, pre"
 
-#: admin-template.php:168
+#: admin-template.php:180
 msgid ""
 "Comma-separated list of HTML tags where trademark symbols should not be "
 "applied. Default excludes links (a), code blocks (code), and preformatted "
@@ -248,145 +258,165 @@ msgstr ""
 "(code)和预格式化文本(pre)。"
 
 # Import/Export section
-#: admin-template.php:178
+#: admin-template.php:190
 msgid "Backup and restore your trademark terms using CSV files."
 msgstr "使用CSV文件备份和恢复您的商标术语。"
 
-#: admin-template.php:182
+#: admin-template.php:194
 msgid "Import Terms"
 msgstr "导入术语"
 
-#: admin-template.php:185
+#: admin-template.php:200
+msgid "Skip first row (header)"
+msgstr "跳过首行（标题）"
+
+#: admin-template.php:203
 msgid "Import CSV"
 msgstr "导入CSV"
 
-#: admin-template.php:186
+#: admin-template.php:204
 msgid ""
 "Import trademark terms from a CSV file. The CSV should contain columns: "
 "term, symbol, position, density, case_sensitive, whole_word."
 msgstr ""
-"从CSV文件导入商标术语。CSV应包含以下列：术语、符号、位置、密度、区分大小写、"
-"全词匹配。"
+"从CSV文件导入商标术语。CSV应包含以下列：术语、符号、位置、密度、区分大小"
+"写、全词匹配。"
 
-#: admin-template.php:190
+#: admin-template.php:208
 msgid "Export Terms"
 msgstr "导出术语"
 
-#: admin-template.php:192
+#: admin-template.php:210
 msgid "Export Terms as CSV"
 msgstr "导出术语为CSV"
 
-#: admin-template.php:193
+#: admin-template.php:211
 msgid ""
 "Export all current trademark terms to a CSV file for backup or transfer to "
 "another site."
 msgstr "将所有当前商标术语导出到CSV文件，用于备份或转移到其他站点。"
 
-#: admin-template.php:201
+#: admin-template.php:219
 msgid "Save Settings"
 msgstr "保存设置"
 
-#: admin-template.php:309 wenpai-trademark.php:412
+#: admin-template.php:358 wenpai-trademark.php:439
 msgid "Please enter a custom symbol."
 msgstr "请输入自定义符号。"
 
-#: admin-template.php:310
+#: admin-template.php:359
 msgid "Please enter a term."
 msgstr "请输入术语。"
 
-#: admin-template.php:312 wenpai-trademark.php:415
+#: admin-template.php:361 wenpai-trademark.php:442
 msgid "Update Term"
 msgstr "更新术语"
 
-#: admin-template.php:313 wenpai-trademark.php:409
+#: admin-template.php:362 wenpai-trademark.php:436
 msgid "Term added successfully!"
 msgstr "术语添加成功！"
 
-#: admin-template.php:314 wenpai-trademark.php:410 wenpai-trademark.php:713
+#: admin-template.php:363 wenpai-trademark.php:437 wenpai-trademark.php:772
 msgid "Term updated successfully!"
 msgstr "术语更新成功！"
 
-#: admin-template.php:315 wenpai-trademark.php:404
+#: admin-template.php:364 wenpai-trademark.php:431
 msgid "Are you sure you want to delete this term?"
 msgstr "您确定要删除这个术语吗？"
 
-#: admin-template.php:316 wenpai-trademark.php:411
+#: admin-template.php:365 wenpai-trademark.php:438
 msgid "Term deleted successfully!"
 msgstr "术语删除成功！"
 
-#: admin-template.php:317 wenpai-trademark.php:413
+#: admin-template.php:366 wenpai-trademark.php:440
 msgid "Please select a CSV file."
 msgstr "请选择一个CSV文件。"
 
-#: admin-template.php:318 wenpai-trademark.php:418
+#: admin-template.php:367 wenpai-trademark.php:445
 msgid "Settings saved successfully!"
 msgstr "设置保存成功！"
 
-#: admin-template.php:319 wenpai-trademark.php:416
+#: admin-template.php:368 wenpai-trademark.php:443
 msgid "Terms imported successfully!"
 msgstr "术语导入成功！"
 
-#: admin-template.php:320
+#: admin-template.php:369
 msgid "Terms exported successfully!"
 msgstr "术语导出成功！"
 
+#: wenpai-trademark.php:397
+msgid "WenPai Trademark Symbol Settings"
+msgstr "文派商标符号设置"
+
 # Plugin header
-#: wenpai-trademark.php:371
+#: wenpai-trademark.php:398
 msgid "Trademark Symbol"
 msgstr "商标符号"
 
-#: wenpai-trademark.php:417
+#: wenpai-trademark.php:444
 msgid "Export failed. Please try again."
 msgstr "导出失败。请重试。"
 
-#: wenpai-trademark.php:419
+#: wenpai-trademark.php:446
 msgid "Failed to save settings. Please try again."
 msgstr "无法保存设置。请重试。"
 
 # AJAX messages
-#: wenpai-trademark.php:456 wenpai-trademark.php:518
+#: wenpai-trademark.php:483 wenpai-trademark.php:548
 msgid "Permission denied"
 msgstr "权限不足"
 
-#: wenpai-trademark.php:503
+#: wenpai-trademark.php:533
 msgid "Settings saved successfully"
 msgstr "设置保存成功"
 
-#: wenpai-trademark.php:508
+#: wenpai-trademark.php:538
 msgid "Failed to save settings"
 msgstr "设置保存失败"
 
-#: wenpai-trademark.php:524
+#: wenpai-trademark.php:554
 msgid "No file uploaded"
 msgstr "未上传文件"
 
-#: wenpai-trademark.php:531
+#: wenpai-trademark.php:561
 msgid "File upload error"
 msgstr "文件上传错误"
 
-#: wenpai-trademark.php:620
+#: wenpai-trademark.php:572
+msgid "Invalid file type. Please upload a CSV file."
+msgstr "无效的文件类型。请上传CSV文件。"
+
+#: wenpai-trademark.php:579
+msgid "File too large. Maximum size is 1MB."
+msgstr "文件太大。最大为1MB。"
+
+#: wenpai-trademark.php:588
+msgid "Empty file or unable to read file."
+msgstr "空文件或无法读取文件。"
+
+#: wenpai-trademark.php:681
 msgid "Term not specified"
 msgstr "未指定期限"
 
-#: wenpai-trademark.php:627
+#: wenpai-trademark.php:688
 msgid "Term not found"
 msgstr "术语未找到"
 
-#: wenpai-trademark.php:661
+#: wenpai-trademark.php:722
 msgid "Term names cannot be empty"
 msgstr "术语名称不能为空"
 
-#: wenpai-trademark.php:674
+#: wenpai-trademark.php:733
 msgid "Original term not found"
-msgstr "Original term not found"
+msgstr "未找到原始术语"
 
-#: wenpai-trademark.php:688
+#: wenpai-trademark.php:747
 msgid "A term with this name already exists"
 msgstr "具有此名称的术语已存在"
 
 #. Plugin Name of the plugin/theme
-msgid "WenPai Trademark Plugin"
-msgstr "文派商标"
+msgid "WenPai Trademark Symbols"
+msgstr "文派商标符号"
 
 #. Plugin URI of the plugin/theme
 #. Author URI of the plugin/theme
@@ -400,8 +430,11 @@ msgid ""
 msgstr "在您的WordPress内容中自动为指定术语添加商标符号。"
 
 #. Author of the plugin/theme
-msgid "WenPai"
-msgstr "文派"
+msgid "WenPai.org"
+msgstr "文派开源"
+
+#~ msgid "WenPai Trademark Plugin"
+#~ msgstr "文派商标"
 
 #~ msgid "Apply trademark symbols in post and page titles."
 #~ msgstr "在文章和页面标题中应用商标符号。"
@@ -435,9 +468,6 @@ msgstr "文派"
 
 #~ msgid "First occurrence only"
 #~ msgstr "仅首次出现"
-
-#~ msgid "Invalid file type. Please upload a CSV file."
-#~ msgstr "无效的文件类型。请上传CSV文件。"
 
 #~ msgid "No terms to export"
 #~ msgstr "没有术语可导出"

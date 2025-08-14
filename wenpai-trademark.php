@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: WenPai Trademark Manager
+ * Plugin Name: WenPai Trademark Symbols
  * Plugin URI: https://wenpai.org/
  * Description: Automatically adds trademark symbols (™, ®, ©) to specified terms in WordPress content.
  * Version: 1.1.0
- * Author: WenPai
+ * Author: WenPai.org
  * Author URI: https://wenpai.org/
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -27,7 +27,7 @@ if (!function_exists('plugin_dir_url') || !function_exists('plugin_dir_path') ||
 }
 
 // 定义插件常量
-define('WENPAI_TRADEMARK_VERSION', '1.0.0');
+define('WENPAI_TRADEMARK_VERSION', '1.1.0');
 define('WENPAI_TRADEMARK_PLUGIN_URL', function_exists('plugin_dir_url') ? plugin_dir_url(__FILE__) : '');
 define('WENPAI_TRADEMARK_PLUGIN_PATH', function_exists('plugin_dir_path') ? plugin_dir_path(__FILE__) : dirname(__FILE__) . '/');
 define('WENPAI_TRADEMARK_PLUGIN_BASENAME', function_exists('plugin_basename') ? plugin_basename(__FILE__) : basename(__FILE__));
@@ -589,6 +589,12 @@ class WenpaiTrademark {
             }
         }
         $lines = str_getcsv($csv_data, "\n");
+        
+        // 检查是否跳过标题行
+        $skip_header = isset($_POST['skip_header']) && $_POST['skip_header'] === '1';
+        if ($skip_header && count($lines) > 0) {
+            array_shift($lines); // 移除第一行（标题行）
+        }
         
         $imported_terms = [];
         foreach ($lines as $line) {
