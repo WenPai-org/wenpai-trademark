@@ -1,345 +1,306 @@
-# WenPai Trademark Plugin
-# Copyright (C) 2024 WenPai
-# This file is distributed under the same license as the WenPai Trademark package.
-#
-#, fuzzy
+# Copyright (C) 2024 文派开源
+# This file is distributed under the same license as the WenPai Trademark plugin.
 msgid ""
 msgstr ""
 "Project-Id-Version: WenPai Trademark 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wenpai.org/\n"
-"POT-Creation-Date: 2024-01-01 12:00+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Last-Translator: 文派开源\n"
+"Language-Team: 中文 <zh@li.org>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
 "X-Generator: WordPress\n"
 "X-Domain: wenpai-trademark\n"
 
 # Plugin header
 msgid "WenPai Trademark Symbol"
-msgstr ""
+msgstr "文派商标符号"
 
 msgid "Automatically add trademark symbols to specified terms in your WordPress content."
-msgstr ""
+msgstr "在您的WordPress内容中自动为指定术语添加商标符号。"
 
 msgid "WenPai Trademark Settings"
-msgstr ""
+msgstr "文派商标设置"
 
 # Admin page navigation
 msgid "Trademark Terms"
-msgstr ""
+msgstr "商标术语"
 
 msgid "Application Scope"
-msgstr ""
+msgstr "应用范围"
 
 msgid "Exclusion Settings"
-msgstr ""
+msgstr "排除设置"
 
 msgid "Import/Export"
-msgstr ""
+msgstr "导入导出"
 
 # Trademark Terms section
 msgid "Trademark Terms Management"
-msgstr ""
+msgstr "商标术语管理"
 
 msgid "Manage your trademark terms and their symbol configurations. Each term can have different symbol types, positions, and matching rules."
-msgstr ""
+msgstr "管理您的商标术语及其符号配置。每个术语可以有不同的符号类型、位置和匹配规则。"
 
 msgid "Term"
-msgstr ""
+msgstr "术语"
 
 msgid "Symbol"
-msgstr ""
+msgstr "符号"
 
 msgid "Position"
-msgstr ""
+msgstr "位置"
 
 msgid "Density"
-msgstr ""
+msgstr "密度"
 
 msgid "Case Sensitive"
-msgstr ""
+msgstr "区分大小写"
 
 msgid "Whole Word"
-msgstr ""
+msgstr "全词匹配"
 
 msgid "Actions"
-msgstr ""
+msgstr "操作"
 
 msgid "Add New Term"
-msgstr ""
+msgstr "添加新术语"
 
 msgid "Term Name"
-msgstr ""
+msgstr "术语名称"
 
 msgid "Enter the term to be marked with trademark symbol"
-msgstr ""
+msgstr "输入要标记商标符号的术语"
 
 msgid "Symbol Type"
-msgstr ""
+msgstr "符号类型"
 
 msgid "Choose the type of trademark symbol to apply"
-msgstr ""
+msgstr "选择要应用的商标符号类型"
 
 msgid "Trademark ™"
-msgstr ""
+msgstr "商标 ™"
 
 msgid "Registered ®"
-msgstr ""
+msgstr "注册商标 ®"
 
 msgid "Copyright ©"
-msgstr ""
+msgstr "版权 ©"
 
 msgid "Service Mark ℠"
-msgstr ""
+msgstr "服务标记 ℠"
 
 msgid "Custom"
-msgstr ""
+msgstr "自定义"
 
 msgid "Custom Symbol"
-msgstr ""
+msgstr "自定义符号"
 
 msgid "Enter your custom symbol"
-msgstr ""
+msgstr "输入您的自定义符号"
 
 msgid "Symbol Position"
-msgstr ""
+msgstr "符号位置"
 
 msgid "Choose where the symbol should appear relative to the term"
-msgstr ""
+msgstr "选择符号相对于术语的显示位置"
 
 msgid "After (Term™)"
-msgstr ""
+msgstr "之后 (术语™)"
 
 msgid "Before (™Term)"
-msgstr ""
+msgstr "之前 (™术语)"
 
 msgid "Symbol Density"
-msgstr ""
+msgstr "符号密度"
 
 msgid "Control how often the symbol appears for repeated terms"
-msgstr ""
+msgstr "控制重复术语的符号出现频率"
 
 msgid "Every occurrence"
-msgstr ""
+msgstr "每次出现"
 
 msgid "First occurrence only"
-msgstr ""
+msgstr "仅首次出现"
 
 msgid "Once per paragraph"
-msgstr ""
+msgstr "每段一次"
 
 msgid "Case Sensitive Matching"
-msgstr ""
+msgstr "区分大小写匹配"
 
 msgid "Whether to match the exact case of the term"
-msgstr ""
+msgstr "是否匹配术语的确切大小写"
 
 msgid "Whole Word Matching"
-msgstr ""
+msgstr "全词匹配"
 
 msgid "Whether to match only complete words (recommended)"
-msgstr ""
+msgstr "是否仅匹配完整单词（推荐）"
 
 # Application Scope section
 msgid "Application Scope Settings"
-msgstr ""
+msgstr "应用范围设置"
 
 msgid "Choose where the trademark symbols should be automatically applied on your website."
-msgstr ""
+msgstr "选择在您的网站上自动应用商标符号的位置。"
 
 msgid "Apply To"
-msgstr ""
+msgstr "应用到"
 
 msgid "Post Content"
-msgstr ""
+msgstr "文章内容"
 
 msgid "Apply trademark symbols in the main content of posts and pages."
-msgstr ""
+msgstr "在文章和页面的主要内容中应用商标符号。"
 
 msgid "Post Titles"
-msgstr ""
+msgstr "文章标题"
 
 msgid "Apply trademark symbols in post and page titles."
-msgstr ""
+msgstr "在文章和页面标题中应用商标符号。"
 
 msgid "Widgets"
-msgstr ""
+msgstr "小工具"
 
 msgid "Apply trademark symbols in widget content."
-msgstr ""
+msgstr "在小工具内容中应用商标符号。"
 
 msgid "Comments"
-msgstr ""
+msgstr "评论"
 
 msgid "Apply trademark symbols in user comments."
-msgstr ""
+msgstr "在用户评论中应用商标符号。"
 
 # Exclusion Settings section
-msgid "Exclusion Settings"
-msgstr ""
-
 msgid "Configure which content should be excluded from automatic trademark symbol application."
-msgstr ""
+msgstr "配置哪些内容应排除在自动商标符号应用之外。"
 
 msgid "Exclude Post IDs"
-msgstr ""
+msgstr "排除文章ID"
 
 msgid "e.g., 123, 456, 789"
-msgstr ""
+msgstr "例如：123, 456, 789"
 
 msgid "Comma-separated list of post IDs to exclude from trademark symbol replacement. Useful for specific posts where you don't want automatic symbols."
-msgstr ""
+msgstr "以逗号分隔的文章ID列表，这些文章将被排除在商标符号替换之外。适用于您不希望自动添加符号的特定文章。"
 
 msgid "Exclude HTML Tags"
-msgstr ""
+msgstr "排除HTML标签"
 
 msgid "e.g., a, code, pre"
-msgstr ""
+msgstr "例如：a, code, pre"
 
 msgid "Comma-separated list of HTML tags where trademark symbols should not be applied. Default excludes links (a), code blocks (code), and preformatted text (pre)."
-msgstr ""
+msgstr "以逗号分隔的HTML标签列表，这些标签内不应用商标符号。默认排除链接(a)、代码块(code)和预格式化文本(pre)。"
 
 # Import/Export section
-msgid "Import/Export"
-msgstr ""
-
 msgid "Backup and restore your trademark terms using CSV files."
-msgstr ""
+msgstr "使用CSV文件备份和恢复您的商标术语。"
 
 msgid "Import Terms"
-msgstr ""
+msgstr "导入术语"
 
 msgid "Import CSV"
-msgstr ""
+msgstr "导入CSV"
 
 msgid "Import trademark terms from a CSV file. The CSV should contain columns: term, symbol, position, density, case_sensitive, whole_word."
-msgstr ""
+msgstr "从CSV文件导入商标术语。CSV应包含以下列：术语、符号、位置、密度、区分大小写、全词匹配。"
 
 msgid "Export Terms"
-msgstr ""
+msgstr "导出术语"
 
 msgid "Export Terms as CSV"
-msgstr ""
+msgstr "导出术语为CSV"
 
 msgid "Export all current trademark terms to a CSV file for backup or transfer to another site."
-msgstr ""
+msgstr "将所有当前商标术语导出到CSV文件，用于备份或转移到其他站点。"
 
 # JavaScript messages
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 msgid "No"
-msgstr ""
+msgstr "否"
 
 msgid "Edit"
-msgstr ""
+msgstr "编辑"
 
 msgid "Delete"
-msgstr ""
+msgstr "删除"
 
 msgid "Please enter a custom symbol."
-msgstr ""
+msgstr "请输入自定义符号。"
 
 msgid "Please enter a term."
-msgstr ""
+msgstr "请输入术语。"
 
 msgid "Add Term"
-msgstr ""
+msgstr "添加术语"
 
 msgid "Update Term"
-msgstr ""
+msgstr "更新术语"
 
 msgid "Term added successfully!"
-msgstr ""
+msgstr "术语添加成功！"
 
 msgid "Term updated successfully!"
-msgstr ""
+msgstr "术语更新成功！"
 
 msgid "Are you sure you want to delete this term?"
-msgstr ""
+msgstr "您确定要删除这个术语吗？"
 
 msgid "Term deleted successfully!"
-msgstr ""
+msgstr "术语删除成功！"
 
 msgid "Please select a CSV file."
-msgstr ""
+msgstr "请选择一个CSV文件。"
 
 msgid "Settings saved successfully!"
-msgstr ""
+msgstr "设置保存成功！"
 
 msgid "Terms imported successfully!"
-msgstr ""
+msgstr "术语导入成功！"
 
 msgid "Terms exported successfully!"
-msgstr ""
+msgstr "术语导出成功！"
 
 # AJAX messages
 msgid "Permission denied"
-msgstr ""
+msgstr "权限不足"
 
 msgid "Settings saved successfully"
-msgstr ""
+msgstr "设置保存成功"
 
 msgid "Failed to save settings"
-msgstr ""
+msgstr "设置保存失败"
 
 msgid "No file uploaded"
-msgstr ""
+msgstr "未上传文件"
 
 msgid "File upload error"
-msgstr ""
+msgstr "文件上传错误"
 
 msgid "Invalid file type. Please upload a CSV file."
-msgstr ""
+msgstr "无效的文件类型。请上传CSV文件。"
 
 msgid "Terms imported successfully"
-msgstr ""
+msgstr "术语导入成功"
 
 msgid "Failed to import terms"
-msgstr ""
+msgstr "术语导入失败"
 
 msgid "No terms to export"
-msgstr ""
+msgstr "没有术语可导出"
 
 msgid "Term not found"
-msgstr ""
+msgstr "术语未找到"
 
 msgid "Term name cannot be empty"
-msgstr ""
+msgstr "术语名称不能为空"
 
 msgid "Term already exists"
-msgstr ""
-
-msgid "Terms imported successfully!"
-msgstr ""
-
-msgid "Export failed. Please try again."
-msgstr ""
-
-msgid "Settings saved successfully!"
-msgstr ""
-
-msgid "Failed to save settings. Please try again."
-msgstr ""
-
-msgid "Permission denied"
-msgstr ""
-
-msgid "Term not specified"
-msgstr ""
-
-msgid "Term not found"
-msgstr ""
-
-msgid "Original term not found"
-msgstr ""
-
-msgid "Term names cannot be empty"
-msgstr ""
-
-msgid "A term with this name already exists"
-msgstr ""
+msgstr "术语已存在"

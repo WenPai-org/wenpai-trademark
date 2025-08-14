@@ -1,15 +1,19 @@
 <?php
 /**
- * Plugin Name: 文派商标插件
+ * Plugin Name: WenPai Trademark Manager
  * Plugin URI: https://wenpai.org/
- * Description: 自动为指定术语添加商标符号（™、®、©）的WordPress插件
- * Version: 1.0.0
- * Author: 文派
+ * Description: Automatically adds trademark symbols (™, ®, ©) to specified terms in WordPress content.
+ * Version: 1.1.0
+ * Author: WenPai
  * Author URI: https://wenpai.org/
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: wenpai-trademark
  * Domain Path: /languages
+ * Requires at least: 5.0
+ * Tested up to: 6.4
+ * Requires PHP: 7.4
+ * Network: false
  */
 
 // 防止直接访问
@@ -89,7 +93,28 @@ class WenpaiTrademark {
     
     public function activate() {
         $default_terms = [
-            'WordPress' => [
+            '文派' => [
+                'symbol' => '®',
+                'position' => 'after',
+                'density' => 1,
+                'case_sensitive' => true,
+                'whole_word' => true
+            ],
+            '寻鹿' => [
+                'symbol' => '®',
+                'position' => 'after',
+                'density' => 1,
+                'case_sensitive' => true,
+                'whole_word' => true
+            ],
+            'WPCY' => [
+                'symbol' => '™',
+                'position' => 'after',
+                'density' => 1,
+                'case_sensitive' => true,
+                'whole_word' => true
+            ],
+            'Wapuu' => [
                 'symbol' => '®',
                 'position' => 'after',
                 'density' => 1,
@@ -342,8 +367,8 @@ class WenpaiTrademark {
     public function add_admin_menu() {
         if (function_exists('add_options_page')) {
             add_options_page(
-                'WenPai Trademark Symbol Settings',
-                'Trademark Symbol',
+                __('WenPai Trademark Symbol Settings', 'wenpai-trademark'),
+                __('Trademark Symbol', 'wenpai-trademark'),
                 'manage_options',
                 'wenpai-trademark-settings',
                 [$this, 'render_admin_page']
@@ -428,7 +453,7 @@ class WenpaiTrademark {
         
         if (function_exists('current_user_can') && !current_user_can('manage_options')) {
             if (function_exists('wp_send_json_error')) {
-                wp_send_json_error(['message' => function_exists('__') ? __('Permission denied', 'wenpai-trademark') : 'Permission denied']);
+                wp_send_json_error(['message' => __('Permission denied', 'wenpai-trademark')]);
             }
         }
         
@@ -475,12 +500,12 @@ class WenpaiTrademark {
             }
             
             if (function_exists('wp_send_json_success')) {
-                wp_send_json_success(['message' => 'Settings saved successfully']);
+                wp_send_json_success(['message' => __('Settings saved successfully', 'wenpai-trademark')]);
             }
             
         } catch (Exception $e) {
             if (function_exists('wp_send_json_error')) {
-                wp_send_json_error(['message' => 'Failed to save settings: ' . $e->getMessage()]);
+                wp_send_json_error(['message' => __('Failed to save settings', 'wenpai-trademark') . ': ' . $e->getMessage()]);
             }
         }
     }
@@ -490,20 +515,20 @@ class WenpaiTrademark {
         
         if (function_exists('current_user_can') && !current_user_can('manage_options')) {
             if (function_exists('wp_send_json_error')) {
-                wp_send_json_error(['message' => 'Permission denied']);
+                wp_send_json_error(['message' => __('Permission denied', 'wenpai-trademark')]);
             }
         }
         
         if (!isset($_FILES['csv_file'])) {
             if (function_exists('wp_send_json_error')) {
-                wp_send_json_error(['message' => 'No file uploaded']);
+                wp_send_json_error(['message' => __('No file uploaded', 'wenpai-trademark')]);
             }
         }
         
         $file = $_FILES['csv_file'];
         if ($file['error'] !== UPLOAD_ERR_OK) {
             if (function_exists('wp_send_json_error')) {
-                wp_send_json_error(['message' => 'File upload error']);
+                wp_send_json_error(['message' => __('File upload error', 'wenpai-trademark')]);
             }
         }
         
