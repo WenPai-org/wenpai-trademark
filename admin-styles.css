@@ -1,0 +1,329 @@
+/* WenPai Trademark Plugin Admin Styles */
+
+.wenpai-admin {
+    max-width: 1200px;
+}
+
+.wenpai-card {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    margin: 20px 0;
+    padding: 20px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+.wenpai-card h2 {
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    color: #23282d;
+}
+
+.wenpai-card h3 {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    color: #23282d;
+}
+
+#wenpai-admin-notices {
+    margin: 15px 0;
+}
+
+.wenpai-notice {
+    background: #fff;
+    border-left: 4px solid #00a0d2;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    margin: 5px 0 15px;
+    padding: 12px;
+    border-radius: 0 4px 4px 0;
+}
+
+.wenpai-notice.notice-success {
+    border-left-color: #46b450;
+    background-color: #f7fff7;
+}
+
+.wenpai-notice.notice-error {
+    border-left-color: #dc3232;
+    background-color: #fff7f7;
+}
+
+.wenpai-notice.notice-warning {
+    border-left-color: #ffb900;
+    background-color: #fffbf0;
+}
+
+.wenpai-loading {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+
+.wenpai-loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255,0.7);
+    z-index: 1000;
+}
+
+.wenpai-terms-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.wenpai-terms-table th,
+.wenpai-terms-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.wenpai-terms-table th {
+    background-color: #f9f9f9;
+    font-weight: 600;
+    color: #23282d;
+}
+
+.wenpai-terms-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.wenpai-terms-table .actions {
+    white-space: nowrap;
+}
+
+.wenpai-terms-table .actions .button {
+    margin-right: 5px;
+    font-size: 12px;
+    padding: 4px 8px;
+    height: auto;
+    line-height: 1.4;
+}
+
+.wenpai-form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.wenpai-form-row label {
+    min-width: 120px;
+    font-weight: 600;
+    color: #23282d;
+}
+
+.wenpai-form-row input,
+.wenpai-form-row select {
+    flex: 1;
+    max-width: 300px;
+}
+
+.wenpai-form-row input[type="checkbox"] {
+    flex: none;
+    margin-right: 8px;
+}
+
+.wenpai-checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.wenpai-checkbox-group label {
+    display: flex;
+    align-items: center;
+    min-width: auto;
+    font-weight: normal;
+}
+
+.wenpai-file-upload {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.wenpai-description {
+    font-style: italic;
+    color: #666;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.wenpai-button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.wenpai-button-primary {
+    background: #0073aa;
+    border-color: #0073aa;
+    color: #fff;
+}
+
+.wenpai-button-primary:hover {
+    background: #005a87;
+    border-color: #005a87;
+}
+
+.wenpai-button-secondary {
+    background: #f7f7f7;
+    border-color: #ccc;
+    color: #555;
+}
+
+.wenpai-button-secondary:hover {
+    background: #fafafa;
+    border-color: #999;
+}
+
+.wenpai-button-danger {
+    background: #dc3232;
+    border-color: #dc3232;
+    color: #fff;
+}
+
+.wenpai-button-danger:hover {
+    background: #c62d2d;
+    border-color: #c62d2d;
+}
+
+.wenpai-stats {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.wenpai-stat-box {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    text-align: center;
+    flex: 1;
+}
+
+.wenpai-stat-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #0073aa;
+    display: block;
+}
+
+.wenpai-stat-label {
+    font-size: 13px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.wenpai-help-text {
+    background: #f0f8ff;
+    border: 1px solid #b3d9ff;
+    border-radius: 4px;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+.wenpai-help-text h4 {
+    margin-top: 0;
+    color: #0073aa;
+}
+
+.wenpai-help-text ul {
+    margin-bottom: 0;
+}
+
+.wenpai-help-text li {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .wenpai-form-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .wenpai-form-row label {
+        min-width: auto;
+    }
+    
+    .wenpai-form-row input,
+    .wenpai-form-row select {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .wenpai-stats {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .wenpai-button-group {
+        flex-direction: column;
+    }
+    
+    .wenpai-file-upload {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Animation for notices */
+@keyframes wenpai-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.wenpai-notice {
+    animation: wenpai-fade-in 0.3s ease-out;
+}
+
+/* Loading spinner */
+.wenpai-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #0073aa;
+    border-radius: 50%;
+    animation: wenpai-spin 1s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes wenpai-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+    .wenpai-terms-table {
+        font-size: 14px;
+    }
+    
+    .wenpai-terms-table th,
+    .wenpai-terms-table td {
+        padding: 8px 4px;
+    }
+    
+    .wenpai-terms-table .actions .button {
+        font-size: 11px;
+        padding: 3px 6px;
+        margin-right: 2px;
+    }
+}
